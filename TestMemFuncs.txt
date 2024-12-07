@@ -1,0 +1,7 @@
+test_meminfo_avail (__main__.TestMemFuncs.test_meminfo_avail) ... ok
+test_meminfo_total (__main__.TestMemFuncs.test_meminfo_total) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.003s
+
+OK
