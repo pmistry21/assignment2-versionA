@@ -3,11 +3,15 @@
 '''
 OPS445 Assignment 2
 Program: assignment2.py 
-Author: "Student Name"
-Semester: "Enter Winter/Summer/Fall Year"
+Author: "Prasad Mistry"
+Student ID: 111964193
+Student Email: pmistry21@myseneca.ca
+Course: OPS445
+Section: ZAA
+Semester: "Fall 2024"
 
 The python code in this file is original work written by
-"Student Name". No code in this file is copied from any other source 
+"Prasad Mistry". No code in this file is copied from any other source 
 except those provided by the course instructor, including any person, 
 textbook, or on-line resource. I have not shared this python script 
 with anyone or anything except for submission for grading.  
@@ -37,15 +41,40 @@ def parse_command_args() -> object:
 def percent_to_graph(percent: float, length: int=20) -> str:
     "turns a percent 0.0 - 1.0 into a bar graph"
     ...
-# percent to graph function
+    # percent to graph function
+    if percent < 0.0:   
+        percent = 0.0
+    elif percent > 1.0:
+        percent = 1.0
+
+    hashes = int(percent * length + 0.5) 
+    no_hashes = length - hashes         
+
+    return '#' * hashes + ' ' * no_hashes
+
 
 def get_sys_mem() -> int:
     "return total system memory (used or available) in kB"
     ...
+    f = open('/proc/meminfo', 'r')  
+    for each_one in f:
+        if 'MemTotal' in each_one: 
+            sys_memory = int(each_one.split()[1])  
+            f.close()
+            return sys_memory
+    return None
 
 def get_avail_mem() -> int:
     "return total memory that is available"
     ...
+    f = open('/proc/meminfo', 'r')
+    for each_one_2 in f:      
+        if 'MemAvailable' in each_one_2: 
+            avail_memory = int(each_one_2.split()[1])
+            f.close() 
+            return avail_memory
+    return None
+
 
 def pids_of_prog(app_name: str) -> list:
     "given an app name, return all pids associated with app"
